@@ -1,0 +1,39 @@
+.container {
+  display: flex;
+  flex-direction: column;
+  align-items: stretch;
+  background-color: black;
+  height: 100vh;
+  .search-bar {
+    flex-basis: 5%;
+    padding: 2%;
+    @extend .center-chidren;
+    input {
+      height: 90%;
+      flex: auto;
+      font: inherit;
+      background-color: inherit;
+      color: inherit;
+    }
+  }
+  .yt-video {
+    @extend .center-chidren;
+    flex-basis: 240px;
+  }
+  .lyrics {
+    // scrollable flex item
+    flex: 1 1 auto;
+    overflow-y: auto;
+    min-height: 0px;
+    -webkit-mask-image: linear-gradient(to top, black 50%, transparent 100%);
+    mask-image: linear-gradient(to top, black 50%, transparent 100%);
+    padding: 2%;
+  }
+}
+
+.center-chidren {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 2%;
+}

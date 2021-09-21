@@ -1,0 +1,11 @@
+<div class="parent">
+    <!-- <div>{{currTime}}</div> -->
+    <div class="lyrics" #lyricBody *ngIf="lyricDataObj">
+      <p *ngFor="let line of lyricDataObj" [ngClass]="{'current': (line.time < currTime) 
+        && (lyricDataObj[line.id+1] ? (lyricDataObj[line.id+1].time> currTime): true)}">
+          <!-- <span>{{line.id}}-</span>
+          <span>{{line.time}}-</span> -->
+          <span>{{line.text}}</span>
+      </p>
+    </div>
+  </div>
