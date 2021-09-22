@@ -6,7 +6,8 @@
     "start": "ng serve",
     "build": "ng build",
     "watch": "ng build --watch --configuration development",
-    "test": "ng test"
+    "test": "ng test",
+    "deploy-prod": "ng deploy --base-href=/you-synced/"
   },
   "private": true,
   "dependencies": {
@@ -19,6 +20,7 @@
     "@angular/platform-browser-dynamic": "~12.0.3",
     "@angular/router": "~12.0.3",
     "@angular/youtube-player": "^12.2.6",
+    "angular-cli-ghpages": "^1.0.0-rc.2",
     "buffer": "^6.0.3",
     "jsmediatags": "^3.9.7",
     "rxjs": "~6.6.0",
