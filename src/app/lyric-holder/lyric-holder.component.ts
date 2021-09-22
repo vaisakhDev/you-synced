@@ -20,7 +20,12 @@ export class LyricHolderComponent implements OnInit {
 
   ngOnInit(): void {
     this.lyricService.getSongDetails()
-      .subscribe((songDetails: ISongDetails) => this.fetchLyrics(songDetails));
+      .subscribe((songDetails: ISongDetails) => {
+        // clear the existing lyrics everytime the song changes
+        this.lyricDataObj = [];
+        this.fetchLyrics(songDetails);
+      });
+
     setInterval(() => {
       if(this.lyricBody){   
         const el = this.lyricBody.nativeElement.getElementsByClassName('current');

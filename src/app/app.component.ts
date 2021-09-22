@@ -20,7 +20,6 @@ export class AppComponent {
   }
 
   public readYtUrl(e : any) {
-    this.youtubeVideoUrl = '';
     this.youtubeVideoUrl = e.target.value;
     console.log((e.target.value));
     
