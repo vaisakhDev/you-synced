@@ -1,6 +1,6 @@
-<ng-container  *ngIf="!isLoading">
-    <youtube-player [videoId]="videoID" #player [height]="200" [width]="200"
+<div class="sizeFull" #videoContainer>
+    <youtube-player [videoId]="videoID" #player [height]="playerHeight" *ngIf="!isLoading" [width]="playerWidth"
         (ready)="getVideoDetails($event)">
     </youtube-player>
-</ng-container>
+</div>
 

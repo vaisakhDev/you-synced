@@ -1,5 +1,6 @@
 import { AfterViewInit, Component, ElementRef, Input, OnChanges, OnInit, SimpleChanges, ViewChild } from '@angular/core';
 import { YouTubePlayer } from '@angular/youtube-player';
+import { fromEvent } from 'rxjs';
 import { LyricsService } from '../services/lyrics.service';
 
 @Component({
@@ -9,9 +10,13 @@ import { LyricsService } from '../services/lyrics.service';
 })
 export class YtPlayerComponent implements OnInit, AfterViewInit, OnChanges{
   @Input() videoUrl: string;
+  public playerWidth = 200;
+  public playerHeight = 200; 
   public videoID: string;
   public isLoading: boolean = true;
   @ViewChild('player') ytPlayerEl: YouTubePlayer;
+  @ViewChild('videoContainer') ytPlayerContainer: ElementRef<HTMLDivElement>;
+  private windowResizeObservable  =  fromEvent(window, 'resize');
 
   constructor(private lyricService: LyricsService) { }
 
@@ -21,8 +26,9 @@ export class YtPlayerComponent implements OnInit, AfterViewInit, OnChanges{
     document.body.appendChild(tag);
   }
   ngAfterViewInit(): void {
-    setInterval(() => this.lyricService.setSongCurrentTime(this.ytPlayerEl.getCurrentTime()), 20)
-    
+    setInterval(() => this.lyricService.setSongCurrentTime(this.ytPlayerEl.getCurrentTime()), 20);
+    this.setPlayerDimensions();
+    this.windowResizeObservable.subscribe(ev => this.setPlayerDimensions());
   }
 
   ngOnChanges(changes: SimpleChanges): void {
@@ -33,6 +39,11 @@ export class YtPlayerComponent implements OnInit, AfterViewInit, OnChanges{
       this.videoID = this.videoUrl.split('?v=')[1]; 
       this.isLoading = false;
     });
+  }
+
+  private setPlayerDimensions() {
+    const dimensions = this.ytPlayerContainer.nativeElement.getBoundingClientRect();
+    this.playerWidth = dimensions.width;
   }
 
   public getVideoDetails(e: any){

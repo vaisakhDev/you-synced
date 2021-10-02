@@ -11,9 +11,10 @@ export class AppComponent {
   audioSrc : SafeUrl;
   audioFile: File;
   public youtubeVideoUrl: string;
-  
+
   constructor(private domSanitizer: DomSanitizer ){}
-  public readSelectedFiles(event: any) {
+
+  public readSelectedFiles(event: any) {  
     this.audioFile = event.target.files[0];
     this.audioSrc = 
      this.domSanitizer.bypassSecurityTrustUrl(URL.createObjectURL(this.audioFile));
@@ -22,6 +23,5 @@ export class AppComponent {
   public readYtUrl(e : any) {
     this.youtubeVideoUrl = e.target.value;
     console.log((e.target.value));
-    
   }
 }
