@@ -1,4 +1,3 @@
-
 <!-- <input type="file" id="input" (change)="readSelectedFiles($event)" > -->
 <!-- <input type="text" id='ytVidUrl' (change)="readYtUrl($event)" > -->
 <!-- <app-audio-player [src]="audioSrc" [songFile]="audioFile"></app-audio-player> -->
@@ -7,18 +6,61 @@
 </ng-container>
 <app-lyric-holder></app-lyric-holder> -->
 
-
 <div class="container">
-    <div class="search-bar">
-        <input type="text" placeholder="Enter Youtube video link"
-            id='ytVidUrl' (change)="readYtUrl($event)">
+  <nav class="nav-bar">
+    <li class="search-bar">
+      <input
+        type="text"
+        placeholder="Enter Youtube video link"
+        id="ytVidUrl"
+        (change)="readYtUrl($event)"
+      />
+    </li>
+    <li
+      class="highlight"
+      (click)="toggleVideoList(videoListTypes.popularVideos)"
+      [ngClass]="{
+        'btn-selected':
+          currentVideoListType === videoListTypes.popularVideos &&
+          !isVideoListHidden
+      }"
+    >
+      Popular Videos
+    </li>
+    <li
+      class="highlight"
+      (click)="toggleVideoList(videoListTypes.recentlyWatched)"
+      [ngClass]="{
+        'btn-selected':
+          currentVideoListType === videoListTypes.recentlyWatched &&
+          !isVideoListHidden
+      }"
+    >
+      Recently Watched
+    </li>
+  </nav>
+  <div style="position: relative">
+    <div
+      class="videoList"
+      style="position: absolute"
+      *ngIf="!isVideoListHidden"
+    >
+      <app-video-list
+        [videos]="videoList"
+        (videoIdSelectedEvent)="setSelectedVideoId($event)"
+      ></app-video-list>
+      <!-- <app-video-list-carousal></app-video-list-carousal> -->
     </div>
-    <div class="yt-video">
-        <ng-container *ngIf="youtubeVideoUrl">
-            <app-yt-player [videoUrl]="youtubeVideoUrl" class="fullSize"></app-yt-player>
-        </ng-container>
-    </div>
-    <div class="lyrics">
-        <app-lyric-holder></app-lyric-holder>
-    </div>
+  </div>
+  <div class="yt-video">
+    <ng-container *ngIf="youtubeVideoId">
+      <app-yt-player
+        [videoId]="youtubeVideoId"
+        class="fullSize"
+      ></app-yt-player>
+    </ng-container>
+  </div>
+  <div class="lyrics">
+    <app-lyric-holder></app-lyric-holder>
+  </div>
 </div>

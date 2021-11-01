@@ -1,0 +1,45 @@
+.flex-container {
+  display: flex;
+  overflow-x: auto;
+  gap: 2rem;
+}
+
+.nothing-found {
+  min-height: 10rem;
+  display: flex;
+  justify-content: center;
+  width: 100%;
+  align-items: center;
+}
+
+.flex-item {
+  cursor: pointer;
+  padding: 2px;
+  background-color: #0e0e0e;
+  border-radius: 5px;
+  display: flex;
+  flex-direction: column;
+  filter: brightness(0.5);
+  justify-content: center;
+  align-items: center;
+  gap: 0.5rem;
+  // flex-basis: 200px;
+
+  &:hover {
+    filter: brightness(1);
+    background-color: black;
+  }
+
+  img {
+    width: 200px;
+    object-fit: cover;
+    border-radius: inherit;
+  }
+
+  div {
+    font-size: 1rem;
+    font-size: 0.75rem;
+    padding: 0 2% 0 2%;
+    text-align: center;
+  }
+}

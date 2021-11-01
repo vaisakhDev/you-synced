@@ -1,0 +1,10 @@
+.sliderContainer {
+  display: flex;
+  overflow-x: auto;
+  gap: 4px;
+}
+.cardImg {
+  width: 100px;
+  height: 120px;
+  object-fit: cover;
+}

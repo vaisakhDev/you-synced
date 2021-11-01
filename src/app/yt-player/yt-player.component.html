@@ -1,6 +1,11 @@
 <div class="sizeFull" #videoContainer>
-    <youtube-player [videoId]="videoID" #player [height]="playerHeight" *ngIf="!isLoading" [width]="playerWidth"
-        (ready)="getVideoDetails($event)">
-    </youtube-player>
+  <youtube-player
+    [videoId]="videoId"
+    #player
+    [height]="playerHeight"
+    *ngIf="!isLoading"
+    [width]="playerWidth"
+    (ready)="getVideoDetails($event)"
+  >
+  </youtube-player>
 </div>
-

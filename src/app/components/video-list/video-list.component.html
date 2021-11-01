@@ -1,0 +1,13 @@
+<div class="flex-container">
+  <div class="nothing-found" *ngIf="videos.length === 0">Nothing found</div>
+  <ng-container *ngIf="videos.length">
+    <a
+      class="flex-item"
+      *ngFor="let video of videos"
+      (click)="emitSelectedVideoId(video.id)"
+    >
+      <img [src]="video.id | getYtThumbnailLink" />
+      <div>{{ video.title }}</div>
+    </a></ng-container
+  >
+</div>
